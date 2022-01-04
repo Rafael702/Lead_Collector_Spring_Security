@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -21,7 +22,7 @@ public class ConfiguracaoDeSeguranca extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().disable();
+        http.csrf().disable();
         http.cors().configurationSource(configuracaoCORS());
 
         http.authorizeRequests().antMatchers(HttpMethod.POST, ENDPOINT_POST_PUBLICO).permitAll()
@@ -36,5 +37,10 @@ public class ConfiguracaoDeSeguranca extends WebSecurityConfigurerAdapter {
         cors.registerCorsConfiguration("/**", new CorsConfiguration()
                 .applyPermitDefaultValues());
         return cors;
+    }
+
+    @Bean
+    BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }
