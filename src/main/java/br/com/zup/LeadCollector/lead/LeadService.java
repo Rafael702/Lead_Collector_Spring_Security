@@ -13,7 +13,7 @@ public class LeadService {
         return leadRepository.save(lead);
     }
 
-    public Iterable<Lead> buscarLead() {
+    public Iterable<Lead> exibirTodosLeads() {
         return leadRepository.findAll();
     }
 }
