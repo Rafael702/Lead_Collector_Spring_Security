@@ -1,4 +1,4 @@
-package br.com.zup.LeadCollector.configsecurity;
+package br.com.zup.LeadCollector.config.security;
 
 import br.com.zup.LeadCollector.usuario.Usuario;
 import br.com.zup.LeadCollector.usuario.UsuarioRepository;

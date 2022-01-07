@@ -1,4 +1,4 @@
-package br.com.zup.LeadCollector.configsecurity;
+package br.com.zup.LeadCollector.config.security;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
