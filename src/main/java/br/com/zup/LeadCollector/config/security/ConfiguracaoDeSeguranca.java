@@ -27,4 +27,10 @@ public class ConfiguracaoDeSeguranca extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated();
     }
 
+    @Bean
+    CorsConfigurationSource configurarCORS() {
+        UrlBasedCorsConfigurationSource cors = new UrlBasedCorsConfigurationSource();
+        cors.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+        return cors;
+    }
 }
