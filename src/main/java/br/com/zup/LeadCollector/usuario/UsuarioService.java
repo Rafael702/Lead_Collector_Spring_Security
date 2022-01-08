@@ -9,13 +9,13 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @Autowired
-    private BCryptPasswordEncoder encoder;
+//    @Autowired
+//    private BCryptPasswordEncoder encoder;
 
     public Usuario salvarUsuario(Usuario usuario) {
-        String senhaEscondida = encoder.encode(usuario.getSenha());
+//        String senhaEscondida = encoder.encode(usuario.getSenha());
 
-        usuario.setSenha(senhaEscondida);
+//        usuario.setSenha(senhaEscondida);
         return usuarioRepository.save(usuario);
     }
 
