@@ -1,11 +1,11 @@
 package br.com.zup.LeadCollector.usuario.dtos;
 
-public class CadastrarUsuarioDTO {
+public class CadastroUsuarioDTO {
 
     private String email;
     private String senha;
 
-    public CadastrarUsuarioDTO() {
+    public CadastroUsuarioDTO() {
     }
 
     public String getEmail() {
