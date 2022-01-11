@@ -25,9 +25,7 @@ public class UsuarioService {
     public void atualizarUsuario(Usuario usuario, UUID id) {
         Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
 
-        if (usuarioOptional.isEmpty()) {
-            throw new RuntimeException("Usuario não existe");
-        }
+        usuarioOptional.orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
 
         Usuario usuarioBanco = usuarioOptional.get();
 
