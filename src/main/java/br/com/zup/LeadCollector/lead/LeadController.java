@@ -26,9 +26,9 @@ public class LeadController {
         return leadService.atualizarLead(lead);
     }
 
-    @DeleteMapping("/{email}")
+    @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT) //O Delete não tem corpo, por conta disso retornamos NO_CONTENT
-    public void deletarLead(@PathVariable String email) {
+    public void deletarLead(@RequestParam String email) {
         leadService.deletarLead(email);
     }
 }
