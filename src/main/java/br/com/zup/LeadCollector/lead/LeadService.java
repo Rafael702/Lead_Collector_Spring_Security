@@ -21,4 +21,7 @@ public class LeadService {
         return leadRepository.save(lead);
     }
 
+    public void deletarLead(String email) {
+        leadRepository.deleteById(email);
+    }
 }
