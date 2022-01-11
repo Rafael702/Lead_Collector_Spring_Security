@@ -2,6 +2,7 @@ package br.com.zup.LeadCollector.config.security.JWT;
 
 import br.com.zup.LeadCollector.config.security.exception.TokenInvalidoException;
 import io.jsonwebtoken.Claims;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -51,8 +52,7 @@ public class FiltroDeAutorizacaoJWT extends BasicAuthenticationFilter {
                 SecurityContextHolder.getContext().setAuthentication(auth);
 
             } catch (TokenInvalidoException e) {
-                throw new TokenInvalidoException();
-
+                response.sendError(HttpStatus.FORBIDDEN.value());
             }
         }
         chain.doFilter(request, response);
