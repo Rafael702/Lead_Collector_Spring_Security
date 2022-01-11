@@ -1,6 +1,7 @@
 package br.com.zup.LeadCollector.config.security;
 
 import br.com.zup.LeadCollector.config.security.JWT.FiltroDeAutenticacaoJWT;
+import br.com.zup.LeadCollector.config.security.JWT.FiltroDeAutorizacaoJWT;
 import br.com.zup.LeadCollector.config.security.JWT.JWTComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +22,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 public class ConfiguracaoDeSeguranca extends WebSecurityConfigurerAdapter {
     @Autowired
-    private JWTComponent jwsComponent;
+    private JWTComponent jwsComponente;
     @Autowired
     private UserDetailsService detailsService;
 
@@ -38,7 +39,8 @@ public class ConfiguracaoDeSeguranca extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(HttpMethod.POST, ENDPOINT_POST_PUBLICO).permitAll()
                 .anyRequest().authenticated();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.addFilter(new FiltroDeAutenticacaoJWT(jwsComponent, authenticationManager()));
+        http.addFilter(new FiltroDeAutenticacaoJWT(jwsComponente, authenticationManager()));
+        http.addFilter(new FiltroDeAutorizacaoJWT(authenticationManager(), jwsComponente, detailsService));
     }
 
     @Override
