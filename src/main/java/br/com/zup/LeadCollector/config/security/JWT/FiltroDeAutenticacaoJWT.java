@@ -54,7 +54,7 @@ public class FiltroDeAutenticacaoJWT extends UsernamePasswordAuthenticationFilte
         String token = jwtComponent.gerarToken(username, id);
 
         response.setHeader("Access-Control-Expose-Headers", "Authorization");
-        response.addHeader("Authorization","Token: "+token);
+        response.addHeader("Authorization","Token "+token);
     }
 
 }
