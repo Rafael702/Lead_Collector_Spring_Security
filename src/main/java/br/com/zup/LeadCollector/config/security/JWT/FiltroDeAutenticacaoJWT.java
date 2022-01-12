@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.UUID;
 
 public class FiltroDeAutenticacaoJWT extends UsernamePasswordAuthenticationFilter {
 
@@ -49,12 +48,12 @@ public class FiltroDeAutenticacaoJWT extends UsernamePasswordAuthenticationFilte
                                             Authentication authResult) throws IOException, ServletException {
         UsuarioLogado usuarioLogado = (UsuarioLogado) authResult.getPrincipal();
         String username = usuarioLogado.getUsername();
-        UUID id = usuarioLogado.getId();
+        String id = usuarioLogado.getId();
 
         String token = jwtComponent.gerarToken(username, id);
 
         response.setHeader("Access-Control-Expose-Headers", "Authorization");
-        response.addHeader("Authorization","Token "+token);
+        response.addHeader("Authorization", "Token " + token);
     }
 
 }

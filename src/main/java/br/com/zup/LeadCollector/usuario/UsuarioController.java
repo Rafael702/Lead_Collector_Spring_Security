@@ -24,13 +24,15 @@ public class UsuarioController {
     }
 
     @PutMapping
-    public void atualizarDadosDoUsuario(@RequestBody CadastroUsuarioDTO cadastrarUsuarioDTO, Authentication authentication) {
+    public void atualizarDadosDoUsuario(@RequestBody CadastroUsuarioDTO cadastrarUsuarioDTO,Authentication authentication) {
         UsuarioLogado usuarioLogado = (UsuarioLogado) authentication.getPrincipal();
+        System.out.println(usuarioLogado.getId());
 
         Usuario usuario = new Usuario();
         usuario.setEmail(cadastrarUsuarioDTO.getEmail());
         usuario.setSenha(cadastrarUsuarioDTO.getSenha());
 
         usuarioService.atualizarUsuario(usuario, usuarioLogado.getId());
+
     }
 }
