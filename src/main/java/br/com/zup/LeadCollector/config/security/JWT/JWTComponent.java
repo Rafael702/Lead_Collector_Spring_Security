@@ -4,14 +4,17 @@ import br.com.zup.LeadCollector.config.security.exception.TokenInvalidoException
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
 @Component
 public class JWTComponent {
-    private String segredo = "xblau";
-    private Long milissegundo = 6000l;
+    @Value("${jwt.segredo}")
+    private String segredo;
+    @Value("${jwt.milissegundo}")
+    private Long milissegundo;
 
     public String gerarToken(String userName, String id) {
         Date vencimento = new Date(System.currentTimeMillis() * milissegundo);
